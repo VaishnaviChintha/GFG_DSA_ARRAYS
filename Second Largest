@@ -1,0 +1,39 @@
+import java.util.*;
+public class Solution {
+    public int getSecondLargest(int[] arr) {
+        // code here
+        if(arr.length<=1){
+            return -1;
+        }
+        int second = Integer.MIN_VALUE;
+        int first = Integer.MIN_VALUE;
+        Set<Integer> res = new HashSet<>();
+        for(int num : arr){
+           if(num>first){
+               second = first;
+               first=num;
+           }else if(num>second && num!=first){
+               second = num;
+           }
+           res.add(num);
+        }
+        return (second==Integer.MIN_VALUE)?-1:second;
+    }
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Solution obj = new Solution();
+        int result = obj.getSecondLargest(arr);
+
+        System.out.println(result);
+
+        sc.close();
+    }
+}
