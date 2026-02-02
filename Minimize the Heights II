@@ -1,0 +1,41 @@
+import java.util.*;
+public class Solution {
+    public int getMinDiff(int[] arr, int k) {
+        int n = arr.length;
+        Arrays.sort(arr);
+        // code here
+        int answer = arr[n-1] - arr[0]; // initial difference
+
+        for(int i=0; i<n-1; i++){
+            int high = Math.max(arr[i] + k, arr[n-1] - k);
+            int low = Math.min(arr[0] + k, arr[i+1] - k);
+            if(low<0) continue;
+            answer = Math.min(answer, high - low);
+        }
+        return answer;
+    }
+// Main method for testing
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter number of elements:");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.println("Enter value of k:");
+        int k = sc.nextInt();
+
+        Solution obj = new Solution();
+        int result = obj.getMinDiff(arr, k);
+
+        System.out.println("Minimum possible difference: " + result);
+
+        sc.close();
+    }
+
+}
