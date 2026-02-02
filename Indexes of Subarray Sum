@@ -1,0 +1,51 @@
+import java.util.*;
+public class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+        ArrayList<Integer> res = new ArrayList<>();
+
+        int s = 0, sum = 0;
+
+        for (int e = 0; e < arr.length; e++) {
+            sum += arr[e];
+
+            while (sum > target && s <= e) {
+                sum -= arr[s];
+                s++;
+            }
+
+            if (sum == target) {
+                res.add(s + 1); // start index (1-based)
+                res.add(e + 1); // end index (1-based)
+                return res;
+            }
+        }
+
+        // no subarray found
+        res.add(-1);
+        return res;
+    }
+  public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // input size
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        // input array elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // input target sum
+        int target = sc.nextInt();
+
+        ArrayList<Integer> result = subarraySum(arr, target);
+
+        // output
+        for (int val : result) {
+            System.out.print(val + " ");
+        }
+
+        sc.close();
+    }
+}
