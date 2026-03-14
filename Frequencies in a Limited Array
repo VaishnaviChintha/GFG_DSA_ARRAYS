@@ -1,0 +1,21 @@
+import java.util.*;
+class Solution {
+    public List<Integer> frequencyCount(int[] arr) {
+        // code here
+        int[] res = new int[arr.length+1];
+        for(int num: arr){
+            res[num]++;
+        }
+        List<Integer> a = new ArrayList<>();
+        for(int i=1;i<=arr.length;i++){
+            a.add(res[i]);
+        }
+        return a;
+    }
+public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] arr = {2, 3, 2, 3, 5};
+        List<Integer> result = sol.frequencyCount(arr);
+        System.out.println(result);
+    }
+}
