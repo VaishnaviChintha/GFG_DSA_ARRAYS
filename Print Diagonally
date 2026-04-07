@@ -1,0 +1,43 @@
+import java.util.*;
+class Solution {
+    static ArrayList<Integer> diagView(int mat[][]) {
+        // code here
+       ArrayList<Integer> res = new ArrayList<>();
+        for(int i=0;i<mat.length;i++){
+            if(i==1){
+                break;
+            }
+            for(int j=0;j<mat[0].length;j++){
+                int left=i,right=j;
+                while(left<=j && right>=0){
+                    res.add(mat[left][right]);
+                    left++;
+                    right--;
+                }
+            }
+        }
+         for(int i=1;i<mat.length;i++){
+                int left=i,right=mat[0].length-1;
+                while(left<mat[0].length && right>=0){
+                    res.add(mat[left][right]);
+                    left++;
+                    right--;
+                }
+        }
+        return res;
+    }
+public static void main(String[] args) {
+        int[][] mat = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        ArrayList<Integer> result = diagView(mat);
+
+        System.out.println("Diagonal Traversal:");
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+}
