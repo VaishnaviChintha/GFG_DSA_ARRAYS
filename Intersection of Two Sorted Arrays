@@ -1,0 +1,49 @@
+import java.util.*;
+class Solution {
+    ArrayList<Integer> intersection(int[] a, int[] b) {
+        // code here
+        ArrayList<Integer> res = new ArrayList<>();
+        HashSet<Integer> set = new HashSet<>();
+        for(int num: a){
+            int idx = binarySearch(b,num);
+            if(idx!=-1){
+                if(!set.contains(num)){
+                    res.add(num);
+                    set.add(num);
+                }
+            }
+        }
+        return res;
+        
+    }
+    private static int binarySearch(int[] arr,int num){
+        int low=0,high=arr.length-1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid]==num){
+                return mid;
+            }else if(arr[mid]<num){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return -1;
+    }
+public static void main(String[] args) {
+        Solution sol = new Solution();
+
+        int[] a = {1, 2, 2, 3, 4, 5};
+        int[] b = {2, 2, 3, 5, 6};
+
+        // IMPORTANT: binarySearch works only if array b is sorted
+        Arrays.sort(b);
+
+        ArrayList<Integer> result = sol.intersection(a, b);
+
+        System.out.println("Intersection elements:");
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+}
