@@ -1,0 +1,27 @@
+import java.util.*;
+class Solution {
+    public int visibleBuildings(int arr[]) {
+        // code here
+        int count=1;
+        int n = arr.length;
+        int maxHeight = arr[0];
+        for(int i=1;i<n;i++){
+            if(arr[i]>=maxHeight){
+                count++;
+                maxHeight=arr[i];
+            }
+        }
+        return count;
+    }
+public static void main(String[] args) {
+        Solution sol = new Solution();
+
+        int[] arr1 = {6, 2, 8, 4, 11, 13};
+        int[] arr2 = {2, 5, 1, 8, 3};
+        int[] arr3 = {3, 3, 3, 1};
+
+        System.out.println("Output 1: " + sol.visibleBuildings(arr1)); // 4
+        System.out.println("Output 2: " + sol.visibleBuildings(arr2)); // 3
+        System.out.println("Output 3: " + sol.visibleBuildings(arr3)); // 3
+    }
+}
