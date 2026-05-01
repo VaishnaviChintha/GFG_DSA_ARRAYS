@@ -1,0 +1,27 @@
+import java.util.*;
+class Solution {
+    static ArrayList<Integer> kthLargest(int[] arr, int k) {
+        // code here
+        int n = arr.length;
+        Queue<Integer> pq = new PriorityQueue<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            pq.add(arr[i]);
+            if(pq.size()>k){
+                pq.poll();
+            }
+            if(pq.size()==k){
+                 res.add(pq.peek());
+            }else{
+                 res.add(-1);
+            }
+        }
+        return res;
+    }
+ public static void main(String[] args) {
+        int[] arr = {4, 5, 8, 2};
+        int k = 3;
+        ArrayList<Integer> result = kthLargest(arr, k);
+        System.out.println(result);
+    }
+}
