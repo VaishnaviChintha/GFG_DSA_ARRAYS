@@ -1,0 +1,42 @@
+import java.util.*;
+class Solution {
+    public boolean wifiRange(String s, int x) {
+        // code here
+        int n = s.length();
+        boolean[] flag = new boolean[n];
+        for(int i=0;i<n;i++){
+            if(s.charAt(i)=='1'){
+                flag[i]=true;
+                // left range 
+                for(int j=i;(j>=(i-x)&&j>=0) ;j--){
+                    flag[j]=true;
+                }
+                // right range
+                for(int j=i;(j<=(i+x) && j<n);j++){
+                    flag[j]=true;
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(flag[i]==false){
+                return false;
+            }
+        }
+        return true;
+    }
+public static void main(String[] args) {
+        Solution sol = new Solution();
+
+        String s1 = "10001";
+        int x1 = 1;
+        System.out.println(sol.wifiRange(s1, x1)); // false
+
+        String s2 = "10001";
+        int x2 = 2;
+        System.out.println(sol.wifiRange(s2, x2)); // true
+
+        String s3 = "010";
+        int x3 = 1;
+        System.out.println(sol.wifiRange(s3, x3)); // true
+    }
+}
